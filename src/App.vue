@@ -5,11 +5,16 @@ const showModal = ref(false);
 const newNote = ref("")
 const notes = ref([])
 
+const errorMessage = ref("")
+
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 
 const addNote = () => {
+  if(newNote.value.length < 1) {
+    return errorMessage.value = "A note can't be empty"
+  }
   notes.value.push({
     id: Math.floor(Math.random() * 1000000),
     text: newNote.value,
@@ -17,7 +22,7 @@ const addNote = () => {
     backgroundcolor: getRandomColor()
   });
   showModal.value = false;
-  newNote.value = ""; 
+  newNote.value = "";
 }
 
 </script>
@@ -28,6 +33,7 @@ const addNote = () => {
       <div class="modal">
         
         <textarea v-model="newNote" name="notes" id="notes" cols="30" rows="10"></textarea>
+        <p v-if="errorMessage" >{{ errorMessage }}</p>
         <button @click="addNote">Add Note</button>
         <button @click="showModal=false" class="close">Close</button> 
       </div>
@@ -152,6 +158,11 @@ const addNote = () => {
   .modal .close {
     background-color: rgb(203, 39, 39);
     margin-top: 7px;
+  }
+  
+  .modal p {
+    color: rgb(203, 39, 39);
+
   }
 
 </style>
