@@ -4,6 +4,13 @@
 
 <template>
   <main>
+    <div class="overlay">
+      <div class="modal">
+        <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        <button>Add Note</button>
+      </div>
+    </div>
+
     <div class="container">
       <header>
         <h1>Notes</h1>
@@ -83,6 +90,27 @@
     display: flex;
     flex-wrap: wrap;
     
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.77);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal {
+    width: 750px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
 </style>
